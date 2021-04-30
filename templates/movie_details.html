@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block content %}{% load static %}
+<p></p>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{movie.poster}}" class="d-block w-100" width="160p" alt="...">
+        </div>
+
+    </div>
+</div>
+
+<div class="card my-4" style="width: 18rem;display: inline-block">
+    <img class="card-img-top" src="{{movie.poster}}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <p class="card-text">{{movie.plot |truncatechars:80}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Year: {{movie.year}}</li>
+        <li class="list-group-item">imdb: {{movie.imdbID}}</li>
+        <li class="list-group-item">Ratings: {{movie.imdbRating}}</li>
+        <li class="list-group-item">Genre: {{movie.genre}}</li>
+
+        <a href="{% url 'movie_details' movie.imdbID %}" class="btn btn-primary">Details</a>
+
+    </ul>
+</div>
+
+{% endblock %}

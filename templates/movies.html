@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block content %}{% load static %}
+<!-- <video width="530" height="440" controls autoplay>
+    <source src="{% static 'temp.mkv' %}" type="video/mp4"> </source>-->
+<div class="div" style="display: flex;">
+    {% for mov in movie %}
+
+    <div class="card my-4 mx-2" style="width: 18rem;display: inline-block">
+        <img class="card-img-top" src="{{mov.poster}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{mov.title}}</h5>
+            <p class="card-text">{{mov.plot |truncatechars:120}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Year: {{mov.year}}</li>
+            <li class="list-group-item">imdb: {{mov.imdbID}}</li>
+            <li class="list-group-item">Ratings: {{mov.imdbRating}}</li>
+            <li class="list-group-item">Genre: {% for gen in mov.genre_set.all %} {{gen.genre}}{% endfor %}
+            </li>
+
+            <a href="{% url 'movie_details' mov.imdbID %}" class="btn btn-primary">Details</a>
+
+        </ul>
+    </div>
+
+    {% endfor %}</div> {% endblock %}
